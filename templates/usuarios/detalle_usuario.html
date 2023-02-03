@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} 
+    Detalle de usuario
+{% endblock %}
+
+{% block content%}
+<div class="card mb-3" style="max-width: 1200px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img class="card-img-top" src="{{request.user.profile.profile_picture.url}}" alt="">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{user.username}}</h5>
+          <p class="card-text">Nombre: {{user.first_name}}</p>
+          <p>Apellido {{user.last_name}}</p>
+          <p>telefono: {{user_1.phone}}</p>
+          <p>Fecha de nacimiento: {{user_1.birth_date}}</p>
+
+          <p><a href="/usuarios/actualizar-usuario/" class="btn btn-primary">Actualizar</a></p>
+          <p><a href="/usuarios/actualizar-perfil/" class="btn btn-secondary">Actualizar datos de perfil</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+{% endblock %}

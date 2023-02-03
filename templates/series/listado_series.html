@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Lista_de_series
+{% endblock %}
+
+{% block content%}
+
+<h1> <span class="badge badge-secondary">SERIES</span></h1>
+    {% if request.user.is_authenticated %}
+      {% if request.user.is_superuser %}
+          <h2>Agregar nueva serie</h2> <a href="/series/crear-series/" class="btn btn-primary">Agregar</a>
+      {% endif %}
+    {% endif %}
+
+    {% for serie in series %}
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <img class="card-img-top" src="{{serie.portada.url}}" alt="">
+        <div class="card-body">
+          <h5 class="card-title">{{serie.nombre}}</h5>
+          <p class="card-text">Director = {{serie.director}}</p>
+          <p>Año de lanzamiento = {{serie.año_de_lanzamiento}}</p>
+          {% if request.user.is_authenticated %}
+              <p>{{serie.estado}}</p>
+          {% else %}
+            <p>Inicie sesión para ver el estado de la serie</p>
+          {% endif %}
+        
+          <p><a href="/series/detalle-serie/{{serie.id}}" class="btn btn-primary">Detalle</a></p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+
+
+
+{% endblock %}

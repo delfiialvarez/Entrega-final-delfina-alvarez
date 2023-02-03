@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Lista_de_peliculas
+{% endblock %}
+
+{% block content%}
+
+  <h1> <span class="badge badge-secondary">PELICULAS</span></h1>
+    {% if request.user.is_authenticated %}
+      {% if request.user.is_superuser %}
+          <h2>Agregar nueva película</h2> <a href="/peliculas/crear-peliculas/" class="btn btn-primary">Agregar</a>
+      {% endif %}
+    {% endif %}
+
+    {% for pelicula in peliculas %}
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <img class="card-img-top" src="{{pelicula.portada.url}}" alt="">
+        <div class="card-body">
+          <h5 class="card-title">{{pelicula.nombre}}</h5>
+          <p class="card-text">Director = {{pelicula.director}}</p>
+          <p>Año de lanzamiento = {{pelicula.año_de_lanzamiento}}</p>
+          {% if pelicula.estado == True %}
+            pelicula vista
+          {% else %}
+            pelicula sin ver
+            {% endif %}
+        
+          <p><a href="/peliculas/detalle-pelicula/{{pelicula.id}}" class="btn btn-primary">Detalle</a></p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+
+
+
+{% endblock %}

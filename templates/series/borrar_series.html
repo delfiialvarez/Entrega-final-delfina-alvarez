@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Borrar serie
+{% endblock %}
+
+{% block content%}
+
+    <h2>Serie seleccionada: {{object.nombre}}</h2>
+    <p>Eliminar?</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Borrar">
+    </form>
+{% endblock %}
